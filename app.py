@@ -62,3 +62,9 @@ def get_lazada_info():
     finally:
         if browser:
             browser.close()
+
+# ✅ Phần thêm vào để Render hoạt động đúng
+if __name__ == "__main__":
+    import os
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
