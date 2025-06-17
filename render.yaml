@@ -2,6 +2,6 @@ services:
   - type: web
     name: lazada-render-api
     env: python
-    buildCommand: pip install -r requirements.txt && playwright install
+    buildCommand: cd /opt/render/project/src && pip install -r requirements.txt && playwright install
     startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
     plan: free
