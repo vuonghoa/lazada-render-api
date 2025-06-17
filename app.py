@@ -28,9 +28,13 @@ def get_lazada_info():
             page.goto(url, timeout=30000)
             page.wait_for_timeout(3000)
 
+            # Lấy tiêu đề
             title = page.title().strip()
+
+            # Lấy ảnh đại diện
             image = page.locator('meta[property="og:image"]').get_attribute("content") or ""
 
+            # Tìm các span chứa giá
             spans = page.locator("span:has-text('₫')").all_inner_texts()
             seen = set()
             prices = []
@@ -45,6 +49,7 @@ def get_lazada_info():
 
             price_val = parse_price(prices[0]) if len(prices) >= 1 else 0
             list_val = parse_price(prices[1]) if len(prices) >= 2 else price_val
+
             discount = 0
             if list_val > price_val > 0:
                 discount = round(100 - (price_val / list_val * 100))
