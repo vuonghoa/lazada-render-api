@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from playwright.sync_api import sync_playwright
 import re
+import os
 
 app = Flask(__name__)
 
@@ -47,7 +48,7 @@ def get_lazada_info():
             list_val = parse_price(prices[1]) if len(prices) >= 2 else price_val
             discount = 0
             if list_val > price_val > 0:
-                discount = round(100 - (price_val / list_val * 100))
+                discount = round((list_val - price_val) / list_val * 100)
 
             return jsonify({
                 "title": title,
@@ -63,8 +64,6 @@ def get_lazada_info():
         if browser:
             browser.close()
 
-# ✅ Phần thêm vào để Render hoạt động đúng
 if __name__ == "__main__":
-    import os
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
