@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: lazada-playwright-api
+    name: lazada-affiliate-api
     env: python
     buildCommand: |
       pip install -r requirements.txt
