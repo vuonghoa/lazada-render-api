@@ -1,9 +1,7 @@
 services:
   - type: web
-    name: lazada-api
+    name: lazada-render-api
     env: python
-    buildCommand: "pip install -r requirements.txt && playwright install"
-    startCommand: "python app.py"
+    buildCommand: pip install -r requirements.txt && playwright install
+    startCommand: python app.py
     plan: free
-    region: singapore
-    autoDeploy: false
